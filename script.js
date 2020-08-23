@@ -1,58 +1,44 @@
-"use strict"
+ "use strict"
 
 // TASK 1 ===============================================
-let user = {
-    //user.generator = createUser()
-    //непонятно как добавить в свойство объекта свою функцию
-    //гетеры и сетеры что-то не поддаются понимаю
-    //вроде понятно что один для чтения а второй для записи
-    //но как их применять на практике не очень ясно ((
+
+let user = {};
+
+function addProperty(titleProperty, valueProperty) {
+    Object.defineProperty(user, titleProperty, {
+        value: valueProperty,
+        configurable: true,
+        enumerable: true,
+        writable: true
+    })
 };
 
-function createUser() {
-    let title = '';
-    let value = '';
-    let i = 0;
-    let counter = +prompt('сколько свойсв добавить объекту?');
-
-    while (i < counter) {
-        title = prompt('введите название свойства');
-        value = prompt('введите значение свойства');
-        i++;
-        Object.defineProperty(user, title, {
-            value: value,
-            configurable: true,
-            enumerable: true,
-            writable: true
-        });
-
-    }
-};
-createUser()
+addProperty('name', 'Alex');
+addProperty('age', '34');
 
 console.log(user);
 
 
 // TASK 2 ===============================================
 
-user.changeValue = function () {
-    this.value = prompt('введите новое значение свойства');
 
+let car = {
+    label: 'Tesla',
+    model: 'X',
+    changeUserOrCreate: function (label, model) {
+        this.label = label;
+        this.model = model;
+    }
 };
+console.log(car);
 
-user.changeValue();
+car.changeUserOrCreate('Ferrari', 'Enzo');
 
-console.log(user);
+let newCar = new car.changeUserOrCreate('Porshe', '911s');
 
-//НЕТ - здесь я что-то делаю не так, но без твоей подсказки мне не разобраться
-// видимо я что-то важное упустил и теперь трачу слишком много времени безрезультатно ((
+console.log(car);
 
-
-
-
-
-
-
+console.log(newCar);
 
 
 
